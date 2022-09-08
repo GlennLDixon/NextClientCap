@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.landingPageContainer {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.landingLeftContent {
+    flex: 2 1 auto;
+}
+
+.landingRightContent {
+    flex: 2 1 auto;
+}
