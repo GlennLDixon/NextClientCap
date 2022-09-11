@@ -10,9 +10,9 @@
 }
 
 .landingLeftContent {
-    flex: 2 1 auto;
+    flex: 1 2 auto;
 }
 
 .landingRightContent {
-    flex: 2 1 auto;
+    flex: 2 2 auto;
 }

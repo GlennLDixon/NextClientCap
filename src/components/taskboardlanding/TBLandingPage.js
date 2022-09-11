@@ -1,10 +1,10 @@
-export const TaskBoardPage = () => {
-    const [taskBoards, setTaskBoard] = ([])
+export const TaskBoardLandingPage = () => {
+    const [taskBoardCards, setTaskBoardCards] = ([])
 
     return (
         <div className="taskBoardPageContainer">
             <div className="taskBoardBtnHeader">
-                <button className="NewBoardBtn">Create New Task Board</button>
+                <button className="NewBoardBtn">Create New Board</button>
             </div>
             <div className="TaskBoardsList">
                 <h1>Task Board List Goes here</h1>

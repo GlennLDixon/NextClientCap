@@ -4,6 +4,8 @@ import "./NavBar.css"
 
 export const NavBar = ({ token, setToken }) => {
     const history = useHistory()
+    token = true
+
     return (
         <nav className="navbar is-success mb-3" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
@@ -17,35 +19,14 @@ export const NavBar = ({ token, setToken }) => {
                     {
                         token
                             ?
-                            <Link to="/" className="navbar-item">Posts</Link>
+                            <Link to="/" className="navbar-item">Home</Link>
                             :
                             ""
                     }
                     {
                         token
                             ?
-                            <Link to="/my-posts" className="navbar-item">My Posts</Link>
-                            :
-                            ""
-                    }
-                    {
-                        token
-                            ?
-                            <Link to="/new-post" className="navbar-item">New Post</Link>
-                            :
-                            ""
-                    }
-                    {
-                        token
-                            ?
-                            <Link to="/categories" className="navbar-item">Category Manager</Link>
-                            :
-                            ""
-                    }
-                    {
-                        token
-                            ?
-                            <Link to="/tags" className="navbar-item">Tag Management</Link>
+                            <Link to="/taskboard" className="navbar-item">Task Boards</Link >
                             :
                             ""
                     }

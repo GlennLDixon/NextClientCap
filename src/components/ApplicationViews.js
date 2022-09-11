@@ -1,8 +1,11 @@
 import React from "react"
-import { Route, useRoutes, Navigate, Link } from "react-router-dom"
+import { Route, Routes, Navigate, Link } from "react-router-dom"
 import { Login } from './auth/Login'
 import { Register } from './auth/Register'
 import "./ApplicationViews.css"
+import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min"
+import { TaskBoardLandingPage } from "./taskboardlanding/TBLandingPage"
+import { Home } from '../home'
 
 export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
     const PrivateRoute = ({ children }) => {
@@ -15,14 +18,12 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
     }
 
     return (
-        <div className="landingPageContainer">
-            <div className="landingLeftContent">
-                <h1>Hello World</h1>
-            </div>
-            <div className="landingRightContent">
-                <h1>Hello World</h1>
-            </div>
-
-        </div>
+        <>
+            <BrowserRouter>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/taskboard" component={TaskBoardLandingPage} />
+                {/* <Route exact path="/" element={<Home />} /> */}
+            </BrowserRouter>
+        </>
     )
 }
