@@ -10,7 +10,7 @@ import { TaskBoardPage } from './components/taskboard/taskBoardPage';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <TaskBoardPage />
+    <Next />
   </BrowserRouter>
 );
 
