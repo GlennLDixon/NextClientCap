@@ -2,23 +2,33 @@ import React, { useState } from "react"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import "./Next.css"
+import { Route, Redirect } from "react-router-dom"
+import { Login } from "./auth/Login"
+import { Register } from "./auth/Register"
 
 export const Next = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem("next_user") !== null)
-
-    const setAuthUser = (user) => {
-        sessionStorage.setItem("next_user", JSON.stringify(user))
-        setIsAuthenticated(sessionStorage.getItem("next_user") !== null)
-    }
-
-    const clearUser = () => {
-        sessionStorage.clear()
-        setIsAuthenticated(sessionStorage.getItem("next_user") !== null)
-    }
+    let token = true
     return (
         <>
-            <NavBar clearUser={clearUser} isAuthenticated={isAuthenticated} />
-            <ApplicationViews setAuthUse={setAuthUser} isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+            <Route render={() => {
+                if (token === true) {
+                    return <>
+                        <Route>
+                            <NavBar />
+                            <ApplicationViews />
+                        </Route>
+                    </>
+                } else {
+                    return <Redirect to="/login" />
+                }
+            }} />
+            <Route path="/login">
+                <Login />
+            </Route>
+
+            <Route path="/register">
+                <Register />
+            </Route>
         </>
     )
 
