@@ -1,14 +1,21 @@
-import React from 'react';
+import React from "react";
+import studying from "./assets/studying.jpg";
+import "./home.css";
 
 export const Home = () => {
-    return (
-        <div className="landingPageContainer">
-            <div className="landingLeftContent">
-                <h1>Hello World</h1>
-            </div>
-            <div className="landingRightContent">
-                <h1>Hello World</h1>
-            </div>
-        </div>
-    );
-}
+  return (
+    <div className="landingPageContainer">
+      <div className="landingLeftContent">
+        <h3>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi
+          consequuntur magni nostrum deleniti dolore provident praesentium
+          incidunt laborum repellat nesciunt ab beatae illum tempora blanditiis
+          temporibus est, maxime hic earum.
+        </h3>
+      </div>
+      <div className="landingRightContent">
+        <img id="home-page-img" src={studying} alt="man studying" />
+      </div>
+    </div>
+  );
+};

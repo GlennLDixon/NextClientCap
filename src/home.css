@@ -1,0 +1,19 @@
+#home-page-img {
+  border-radius: 10rem 0 0 0;
+  width: 600px;
+}
+
+.landingLeftContent {
+  display: flex;
+  justify-content: center;
+  height: 900px;
+  flex-direction: column;
+  padding-left: 75px;
+}
+
+.landingRightContent {
+  display: flex;
+  justify-content: flex-end;
+  height: 1000px;
+  flex-direction: column;
+}
