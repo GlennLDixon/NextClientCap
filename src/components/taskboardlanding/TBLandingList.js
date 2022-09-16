@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react"
 import { TBLandingCard } from "./TBLandingCard"
-// import { getMyBoards, deleteBoards } from
+import { getAllBoards, deleteBoards } from "./BoardManager"
 import { useParams, useNavigate } from "react-router-dom"
 
-export const LandingList = () => {
+export const TBLandingList = () => {
     const [boards, setBoards] = useState([])
 
     const getBoards = () => {
         return getAllBoards().then(boardsFromApi => {
-            setMessages(messagesFromApi)
+            setBoards(boardsFromApi)
         })
     }
+
+    console.log(boards)
 
     const { boardId } = useParams()
 
     const handleDeleteBoard = id => {
-        handleDeleteBoard(id)
+        deleteBoards(id)
             .then(() => getAllBoards()
                 .then(setBoards))
     }
@@ -26,6 +28,14 @@ export const LandingList = () => {
 
     return (
         <>
+            <div className="container-cards">
+                {boards.map(board =>
+                    <TBLandingCard
+                        key={board.id}
+                        board={board}
+                        handleDeleteBoard={handleDeleteBoard}
+                    />)}
+            </div>
         </>
     )
 }
