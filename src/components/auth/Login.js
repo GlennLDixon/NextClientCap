@@ -1,12 +1,14 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Login.css"
 
-export const Login = () => {
+export const Login = ({ setToken }) => {
     const username = useRef()
     const password = useRef()
     const invalidDialog = useRef()
     const history = useHistory()
+    const setUserId = useRef()
+    const [isUnsuccessful, setisUnsuccessful] = useState(false)
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -25,14 +27,18 @@ export const Login = () => {
             .then(res => res.json())
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
-                    localStorage.setItem("lu_token", res.token)
-                    history.push("/")
+                    // localStorage.setItem("token", res.token)
+                    setToken(res.token)
+                    setUserId(res.userId)
+                    history('/')
+
                 }
                 else {
                     invalidDialog.current.showModal()
                 }
             })
     }
+
 
     return (
         <main className="container--login">
@@ -45,7 +51,7 @@ export const Login = () => {
                     <h1>Level Up</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputUsername"> Username address </label>
+                        <label htmlFor="inputUsername"> Username</label>
                         <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
                     </fieldset>
                     <fieldset>
@@ -57,6 +63,9 @@ export const Login = () => {
                     }}>
                         <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
                     </fieldset>
+                    {
+                        isUnsuccessful ? <p className="help is-danger">Username or password not valid</p> : ''
+                    }
                 </form>
             </section>
             <section className="link--register">

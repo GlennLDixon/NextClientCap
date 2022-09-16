@@ -1,11 +1,13 @@
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
+import { registerUser } from "./AuthManger"
 import "./Login"
 
-export const Register = () => {
+export const Register = ({ setToken }) => {
     const firstName = useRef()
     const lastName = useRef()
     const username = useRef()
+    const email = useRef()
     const bio = useRef()
     const password = useRef()
     const verifyPassword = useRef()
@@ -17,25 +19,18 @@ export const Register = () => {
 
         if (password.current.value === verifyPassword.current.value) {
             const newUser = {
-                "username": username.current.value,
-                "first_name": firstName.current.value,
-                "last_name": lastName.current.value,
-                "bio": bio.current.value,
-                "password": password.current.value
+                username: username.current.value,
+                first_name: firstName.current.value,
+                last_name: lastName.current.value,
+                email: email.current.value,
+                password: password.current.value,
+                bio: bio.current.value
             }
 
-            return fetch("http://127.0.0.1:8000/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(newUser)
-            })
-                .then(res => res.json())
+            registerUser(newUser)
                 .then(res => {
-                    if ("token" in res) {
-                        localStorage.setItem("lu_token", res.token)
+                    if ("valid" in res && res.valid) {
+                        setToken(res.token)
                         history.push("/")
                     }
                 })
@@ -63,6 +58,10 @@ export const Register = () => {
                     <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
                 </fieldset>
                 <fieldset>
+                    <label htmlFor="lastName"> Email </label>
+                    <input ref={email} type="text" name="lastName" className="form-control" placeholder="Email" required />
+                </fieldset>
+                <fieldset>
                     <label htmlFor="inputUsername">Username</label>
                     <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required />
                 </fieldset>
@@ -75,8 +74,8 @@ export const Register = () => {
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="verifyPassword"> Verify Password </label>
-                    <textarea ref={bio} name="bio" className="form-control" placeholder="Let other gamers know a little bit about you..." />
+                    <label htmlFor="verifyPassword"> Bio </label>
+                    <textarea ref={bio} name="bio" className="form-control" placeholder="Let other people know a little bit about you..." />
                 </fieldset>
                 <fieldset style={{
                     textAlign: "center"

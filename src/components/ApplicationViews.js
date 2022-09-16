@@ -25,8 +25,7 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
     <>
       <BrowserRouter>
         <Route exact path="/" component={Home} />
-        <Route exact path="/taskboard" component={TaskBoardPage} />
-        {/* <Route exact path="/" element={<Home />} /> */}
+        <Route exact path="/taskboardlandingpage" component={TaskBoardLandingPage} />
       </BrowserRouter>
     </>
   );

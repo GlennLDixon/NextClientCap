@@ -28,7 +28,7 @@ export const NavBar = ({ token, setToken }) => {
             ""
           )}
           {token ? (
-            <a className="navbar-item" href="/taskboard">
+            <a className="navbar-item" href="/taskboardlandingpage">
               Task Boards
             </a>
           ) : (

@@ -2,10 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-import App from "./App";
 import { Next } from "./components/Next";
 import "./index.css";
-import { TaskBoardPage } from "./components/taskboard/taskBoardPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

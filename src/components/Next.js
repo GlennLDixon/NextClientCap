@@ -1,35 +1,39 @@
 import React, { useState } from "react"
+import { Route, Redirect } from "react-router-dom"
 import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
-import "./Next.css"
-import { Route, Redirect } from "react-router-dom"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 
 export const Next = () => {
-    let token = true
-    return (
-        <>
-            <Route render={() => {
-                if (token === true) {
-                    return <>
-                        <Route>
-                            <NavBar />
-                            <ApplicationViews />
-                        </Route>
-                    </>
-                } else {
-                    return <Redirect to="/login" />
-                }
-            }} />
-            <Route path="/login">
-                <Login />
-            </Route>
+    const [token, setTokenState] = useState(localStorage.getItem('token'))
 
-            <Route path="/register">
-                <Register />
-            </Route>
-        </>
-    )
+    const setToken = (newToken) => {
+        localStorage.setItem('token', newToken)
+        setTokenState(newToken)
+    }
 
+    return <>
+        {
+            token
+                ?
+                <Route>
+                    <NavBar token={token} setToken={setToken} />
+                    <ApplicationViews />
+                </Route>
+                :
+                <Redirect to="/login" />
+        }
+
+        <Route exact path="/login" >
+            <NavBar token={token} setToken={setToken} />
+            <Login token={token} setToken={setToken} />
+        </Route>
+
+        <Route path="/register" exact>
+            <NavBar token={token} setToken={setToken} />
+            <Register token={token} setToken={setToken} />
+        </Route>
+
+    </>
 }
