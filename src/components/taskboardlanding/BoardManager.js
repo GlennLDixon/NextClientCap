@@ -9,6 +9,14 @@ export const getAllBoards = () => {
     }).then(res => res.json())
 }
 
+export const getBoardsById = (id) => {
+    return fetch(`${nextApiUrl}/taskboards/${id}`, {
+        "headers": {
+            "Authorization": nextToken
+        }
+    }).then(res => res.json())
+}
+
 export const deleteBoards = (id) => {
     return fetch(`${nextApiUrl}/taskboards/${id}`, {
         "method": "DELETE",

@@ -1,0 +1,11 @@
+.current-task-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 650px;
+    min-height: 250px;
+    width: 700px;
+    border: solid;
+    border-radius: 1rem;
+    margin: 70px;
+  }

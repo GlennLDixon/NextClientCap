@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { TBLandingCard } from "./TBLandingCard"
-import { getAllBoards, deleteBoards } from "./BoardManager"
+import { getAllBoards, deleteBoards, getBoardsById } from "./BoardManager"
 import { useParams, useNavigate } from "react-router-dom"
 
 export const TBLandingList = () => {
@@ -25,6 +25,13 @@ export const TBLandingList = () => {
     useEffect(() => {
         getBoards();
     }, [])
+
+    // useEffect(() => {
+    //     getBoardsById(boardId).then(boards => {
+    //         console.log(boards)
+    //         set
+    //     })
+    // })
 
     return (
         <>

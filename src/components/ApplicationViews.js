@@ -9,7 +9,7 @@ import {
 } from "react-router-dom/cjs/react-router-dom.min";
 import { TaskBoardLandingPage } from "./taskboardlanding/TBLandingPage";
 import { Home } from "../home";
-import { TaskBoardPage } from "./taskboard/taskBoardPage";
+import { TaskBoardPage } from "./taskboard/TaskBoardPage";
 
 export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
   const PrivateRoute = ({ children }) => {
@@ -26,6 +26,7 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
       <BrowserRouter>
         <Route exact path="/" component={Home} />
         <Route exact path="/taskboardlandingpage" component={TaskBoardLandingPage} />
+        <Route exact path="/taskboardpage/:id" component={TaskBoardPage} />
       </BrowserRouter>
     </>
   );
