@@ -7,9 +7,9 @@ import {
   BrowserRouter,
   Router,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { TaskBoardLandingPage } from "./taskboardlanding/TBLandingPage";
+import { TaskBoardLandingPage } from "./Taskboardlanding/TBLandingPage";
 import { Home } from "../home";
-import { TaskBoardPage } from "./taskboard/taskBoardPage";
+import { TaskBoardPage } from "./Taskboard/TaskBoardPage";
 
 export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
   const PrivateRoute = ({ children }) => {

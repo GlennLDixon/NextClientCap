@@ -1,0 +1,32 @@
+#line-break {
+  border-top: solid;
+  margin: 100px 0 10px;
+}
+
+#bottom-half-container {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+#input-and-button-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#input-and-button-column {
+  width: 400px;
+  margin: 40px 60px 20px 0px;
+}
+
+#new-task-input {
+  height: 50px;
+  border-radius: 1rem;
+}
+
+#add-new-task-button {
+  width: 150px;
+  height: 30px;
+  margin: 30px 0 0;
+  border-radius: 0.4rem;
+}

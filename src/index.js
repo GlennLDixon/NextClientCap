@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import { Next } from "./components/Next";
 import "./index.css";
-import { TaskBoardPage } from "./components/taskboard/taskBoardPage";
+import { TaskBoardPage } from "./components/Taskboard/TaskBoardPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
