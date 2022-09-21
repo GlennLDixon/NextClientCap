@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+
+}
+
+.taskBoardBtnHeader {
+    margin: 5% 0 0 0;
+    justify-content: center;
+    display: flex;
+}
+
+.TaskBoardsList {
+    margin: 15% 0 0 0;
+    text-align: center;
+}
+
+.TaskBoardsList > h1 {
+    padding: 0 0 10% 0;
+}
+
+.container-cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}

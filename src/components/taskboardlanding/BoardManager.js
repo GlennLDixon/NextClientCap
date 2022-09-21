@@ -17,6 +17,17 @@ export const getBoardsById = (id) => {
     }).then(res => res.json())
 }
 
+export const addBoard = (newBoard) => {
+    return fetch(`${nextApiUrl}/taskboards`, {
+        "method": "POST",
+        "headers": {
+            "Authorization": nextToken,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newBoard)
+    })
+}
+
 export const deleteBoards = (id) => {
     return fetch(`${nextApiUrl}/taskboards/${id}`, {
         "method": "DELETE",

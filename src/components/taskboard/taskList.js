@@ -1,13 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TaskListCard from "./TaskListCard";
 import "./TaskList.css";
-
-const arr = [1, 2, 3];
+import { getAllTasks, deleteTask } from "./TaskManager";
 
 const TaskList = () => {
+    const [tasks, setTasks] = useState([])
+
+    const getTasks = () => {
+        return getAllTasks().then(tasksFromApi => {
+            setTasks(tasksFromApi)
+        })
+    }
+
+    console.log(tasks)
+
+    const handleDeleteTask = id => {
+        deleteTask(id)
+            .then(() => getAllTasks()
+                .then(setTasks))
+    }
+
+    useEffect(() => {
+        getTasks()
+    }, [])
+
     return (
         <div id="task-list-container">
-            <TaskListCard />
+            {tasks.map(task =>
+                <TaskListCard
+                    key={task.id}
+                    task={task}
+                    handleDeleteTask={handleDeleteTask}
+                />)}
         </div>
     );
 };
