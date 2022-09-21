@@ -9,7 +9,7 @@ export const getAllBoards = () => {
     }).then(res => res.json())
 }
 
-export const getBoardsById = (id) => {
+export const getBoardById = (id) => {
     return fetch(`${nextApiUrl}/taskboards/${id}`, {
         "headers": {
             "Authorization": nextToken
@@ -26,6 +26,17 @@ export const addBoard = (newBoard) => {
         },
         body: JSON.stringify(newBoard)
     })
+}
+
+export const updateBoard = (editBoard) => {
+    return fetch(`${nextApiUrl}/taskboards/${editBoard.id}`, {
+        method: "PUT",
+        headers: {
+            "Authorization": nextToken,
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(editBoard)
+    }).then(data => data.json())
 }
 
 export const deleteBoards = (id) => {

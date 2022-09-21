@@ -30,7 +30,7 @@ export const Login = ({ setToken }) => {
                     // localStorage.setItem("token", res.token)
                     setToken(res.token)
                     setUserId(res.userId)
-                    history('/')
+                    history.push('/')
 
                 }
                 else {

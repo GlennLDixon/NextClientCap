@@ -1,6 +1,8 @@
+const nextApiUrl = "http://localhost:8000"
+const nextToken = `Token ${localStorage.getItem('token')}`
 
 export const loginUser = (user) => {
-    return fetch("http://127.0.0.1:8088/login", {
+    return fetch(`${nextApiUrl}/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -14,11 +16,12 @@ export const loginUser = (user) => {
 }
 
 export const registerUser = (newUser) => {
-    return fetch("http://127.0.0.1:8088/register", {
+    return fetch(`${nextApiUrl}/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
+
         },
         body: JSON.stringify(newUser)
     }).then(res => res.json())

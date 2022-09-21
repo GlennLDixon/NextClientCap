@@ -9,7 +9,7 @@ const TaskListCard = ({ task, handleDeleteTask }) => {
                 <p>{task.task}</p>
                 <button type="button" onClick={() => handleDeleteTask(task.id)}>X</button>
                 <Link to={`${task.id}/edit`}>
-                    <button>Details</button>
+                    <button>Edit</button>
                 </Link>
             </div>
         </div>

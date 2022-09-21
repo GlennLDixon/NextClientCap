@@ -11,6 +11,7 @@ import { TaskBoardLandingPage } from "./taskboardlanding/TBLandingPage";
 import { Home } from "../home";
 import { TaskBoardPage } from "./taskboard/TaskBoardPage";
 import { TaskEditForm } from "./taskboard/TaskEditForm";
+import { LandingEditForm } from "./taskboardlanding/TBLandingEditForm";
 
 export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
   const PrivateRoute = ({ children }) => {
@@ -29,6 +30,7 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
         <Route exact path="/taskboardlandingpage" component={TaskBoardLandingPage} />
         <Route exact path="/taskboardpage/:id" component={TaskBoardPage} />
         <Route exact path="/taskboardpage/:taskId/edit" component={TaskEditForm} />
+        <Route exact path="/taskboardlandingpage/:boardId/edit" component={LandingEditForm} />
       </BrowserRouter>
     </>
   );
