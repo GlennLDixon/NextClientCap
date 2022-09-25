@@ -1,7 +1,8 @@
-import { useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useHistory, useParams } from "react-router-dom"
 import { TBLandingList } from "./TBLandingList"
-import { addBoard } from "./BoardManager"
+import { addBoard, getBoardById } from "./BoardManager"
+import { getTasksById } from "../taskboard/TaskManager";
 import "./Landing.css"
 
 export const TaskBoardLandingPage = () => {
@@ -10,6 +11,7 @@ export const TaskBoardLandingPage = () => {
     })
 
     const navigate = useHistory();
+    const { taskId } = useParams()
 
     const changeState = (event) => {
         const newBoard = { ...board }
@@ -20,6 +22,12 @@ export const TaskBoardLandingPage = () => {
         newBoard[event.target.name] = selectedVal
         setBoard(newBoard)
     }
+
+    useEffect(() => {
+        // getTasksById(taskId).then(task => {
+
+        // })
+    })
 
     const createNewBoard = (event) => {
         event.preventDefault()

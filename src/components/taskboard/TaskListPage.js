@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import CurrentTaskCard from "./CurrentTaskCard";
 import TaskList from "./TaskList";
-import { addTask } from "./TaskManager";
+import { addTask, getTasksByBoardId } from "./TaskManager";
 import "./TaskBoardPage.css";
 import moment from 'moment';
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-export const TaskBoardPage = () => {
+export const TaskListPage = () => {
     const history = useHistory()
     const [task, setTask] = useState({
         task: "",
@@ -14,6 +15,10 @@ export const TaskBoardPage = () => {
         isCompleted: false,
         timeStamp: "00:00:00"
     });
+    const [taskList, setTaskList] = useState([])
+    // const [isLoading, setIsLoading] = useState(false);
+
+    const { taskboardId } = useParams()
 
     const changeState = (event) => {
         const newTask = { ...task }
@@ -32,14 +37,26 @@ export const TaskBoardPage = () => {
         // .then(() => history.pushState("/taskboardpage/:id"))
     }
 
+    useEffect(() => {
+        getTasksByBoardId(taskboardId).then(task => {
+            setTaskList(task)
+            // setIsLoading(false)
+        })
+    }, [])
 
+    console.log(taskList)
+
+    useEffect(() => {
+        console.log(taskList)
+        console.log(`hello ${task}`, task)
+    }, [task])
 
     return (
         <div className="taskBoardPageContainer">
-            <div className="currentTaskBoardContainer">
-                <CurrentTaskCard />
-            </div>
-            <hr id="line-break" />
+            {/* <div className="currentTaskBoardContainer">
+                <h1>{thisTask.task}, {thisTask.dateCreated}</h1>
+            </div> */}
+            {/* <hr id="line-break" /> */}
             <div id="bottom-half-container">
                 <div id="input-and-button-column">
                     <div id="input-and-button-wrapper">
@@ -49,7 +66,8 @@ export const TaskBoardPage = () => {
                         </div>
                     </div>
                 </div>
-                <TaskList />
+                <TaskList
+                />
             </div>
         </div>
     );

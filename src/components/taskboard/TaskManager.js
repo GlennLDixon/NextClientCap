@@ -11,12 +11,17 @@ export const getAllTasks = () => {
     }).then(res => res.json())
 }
 
-export const getTaskById = (TaskId) => {
+export const getTasksById = (TaskId) => {
     return fetch(`${nextApiUrl}/tasks/${TaskId}`, {
         "headers": {
             "Authorization": nextToken
         }
     }).then(res => res.json())
+}
+
+export const getTasksByBoardId = (boardId) => {
+    return fetch(`${nextApiUrl}/taskboards/${boardId}`)
+        .then(res => res.json())
 }
 
 export const addTask = (newTask) => {

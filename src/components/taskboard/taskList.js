@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import TaskListCard from "./TaskListCard";
 import "./TaskList.css";
-import { getAllTasks, deleteTask } from "./TaskManager";
+import { getAllTasks, deleteTask, getTaskByBoardId } from "./TaskManager";
 
-const TaskList = () => {
+const TaskList = ({ thisTask }) => {
     const [tasks, setTasks] = useState([])
 
     const getTasks = () => {

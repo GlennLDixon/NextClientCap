@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom";
-import { getTaskById, updateTask } from "./TaskManager"
+import { getTasksById, updateTask } from "./TaskManager"
 import moment from "moment"
 // import "./TaskForm.css"
 
@@ -41,7 +41,7 @@ export const TaskEditForm = () => {
     }
 
     useEffect(() => {
-        getTaskById(taskId)
+        getTasksById(taskId)
             .then(task => {
                 setTask(task);
                 setIsLoading(false);

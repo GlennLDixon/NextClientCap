@@ -6,10 +6,11 @@ import "./ApplicationViews.css";
 import {
   BrowserRouter,
   Router,
+  useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { TaskBoardLandingPage } from "./taskboardlanding/TBLandingPage";
 import { Home } from "../home";
-import { TaskBoardPage } from "./taskboard/TaskBoardPage";
+import { TaskListPage } from "./taskboard/TaskListPage";
 import { TaskEditForm } from "./taskboard/TaskEditForm";
 import { LandingEditForm } from "./taskboardlanding/TBLandingEditForm";
 
@@ -23,12 +24,15 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
     setIsAuthenticated(sessionStorage.getItem("next_user") !== null);
   };
 
+
+  const { id } = useParams()
+
   return (
     <>
       <BrowserRouter>
         <Route exact path="/" component={Home} />
         <Route exact path="/taskboardlandingpage" component={TaskBoardLandingPage} />
-        <Route exact path="/taskboardpage/:id" component={TaskBoardPage} />
+        <Route exact path="/taskListpage/:taskboardId" component={TaskListPage} />
         <Route exact path="/taskboardpage/:taskId/edit" component={TaskEditForm} />
         <Route exact path="/taskboardlandingpage/:boardId/edit" component={LandingEditForm} />
       </BrowserRouter>
