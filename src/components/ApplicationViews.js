@@ -32,8 +32,8 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
       <BrowserRouter>
         <Route exact path="/" component={Home} />
         <Route exact path="/taskboardlandingpage" component={TaskBoardLandingPage} />
-        <Route exact path="/taskListpage/:taskboardId" component={TaskListPage} />
-        <Route exact path="/taskboardpage/:taskId/edit" component={TaskEditForm} />
+        <Route exact path="/tasklistpage/:taskboardId" component={TaskListPage} />
+        <Route exact path="/tasklistpage/:taskId/edit" component={TaskEditForm} />
         <Route exact path="/taskboardlandingpage/:boardId/edit" component={LandingEditForm} />
       </BrowserRouter>
     </>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import CurrentTaskCard from "./CurrentTaskCard";
 import TaskList from "./TaskList";
-import { addTask, getTasksByBoardId } from "./TaskManager";
+import { addTask, getTasksById } from "./TaskManager";
 import "./TaskBoardPage.css";
 import moment from 'moment';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -38,13 +38,13 @@ export const TaskListPage = () => {
     }
 
     useEffect(() => {
-        getTasksByBoardId(taskboardId).then(task => {
+        console.log("taskboardId", taskboardId)
+        getTasksById(taskboardId).then(task => {
             setTaskList(task)
+            console.log(task)
             // setIsLoading(false)
         })
     }, [])
-
-    console.log(taskList)
 
     useEffect(() => {
         console.log(taskList)
@@ -67,6 +67,8 @@ export const TaskListPage = () => {
                     </div>
                 </div>
                 <TaskList
+                    tasks={taskList}
+                    taskboardId={taskboardId}
                 />
             </div>
         </div>

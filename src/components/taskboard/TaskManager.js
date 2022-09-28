@@ -11,6 +11,14 @@ export const getAllTasks = () => {
     }).then(res => res.json())
 }
 
+export const getBoardTasks = () => {
+    return fetch(`${nextApiUrl}/boardtasks`, {
+        "headers": {
+            "Authorization": nextToken
+        }
+    }).then(res => res.json())
+}
+
 export const getTasksById = (TaskId) => {
     return fetch(`${nextApiUrl}/tasks/${TaskId}`, {
         "headers": {
@@ -20,7 +28,11 @@ export const getTasksById = (TaskId) => {
 }
 
 export const getTasksByBoardId = (boardId) => {
-    return fetch(`${nextApiUrl}/taskboards/${boardId}`)
+    return fetch(`${nextApiUrl}/taskboards/${boardId}`, {
+        "headers": {
+            "Authorization": nextToken
+        }
+    })
         .then(res => res.json())
 }
 
@@ -49,7 +61,7 @@ export const updateTask = (editedTask) => {
         method: "PUT",
         headers: {
             "Authorization": nextToken,
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(editedTask)
     }).then(data => data.json());
