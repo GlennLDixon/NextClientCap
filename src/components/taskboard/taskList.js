@@ -1,44 +1,47 @@
 import React, { useEffect, useState } from "react";
 import TaskListCard from "./TaskListCard";
 import "./TaskList.css";
-import { getAllTasks, deleteTask, getTaskByBoardId, updateTask, getBoardTasks } from "./TaskManager";
+import { getAllTasks, deleteTask, getTasksById, updateTask, getBoardTasks } from "./TaskManager";
 
 const TaskList = ({ tasks, taskboardId }) => {
-    const [newTasks, setNewTasks] = useState([])
+    const [fetchedTasks, setFetchedTasks] = useState([])
     const [boards, setBoards] = useState([])
-    const [boardTask, setBoardTask] = useState([])
+    let taskIds;
+    // let boardId = taskboardId
 
-    const getTasks = () => {
+    const getTasks = (listOfBoardTasks) => {
+        console.log("Taskboard", listOfBoardTasks)
         return getAllTasks().then(tasksFromApi => {
-            setNewTasks(tasksFromApi)
+            const filteredTasks = tasksFromApi.filter(({ id }) => (listOfBoardTasks || []).find(({ task }) => task === id))
+            setFetchedTasks(filteredTasks)
         })
     }
 
-    // boards.map(board => {
-    //     if (board.taskBoard === taskboardId) {
-    //         console.log("test", board.task)
-    //     }
-    // })
+    useEffect(() => {
+        getBoardTasks().then(boardTasks => {
+            const filteredBoardTasks = boardTasks.filter(({ taskBoard }) =>
+                taskboardId == taskBoard
 
-    console.log("tasks", newTasks)
+            )
+            return getTasks(filteredBoardTasks)
+        })
+    }, []);
 
-    console.log("test", boards)
-    console.log(newTasks.map(task => {
-        console.log("test", task.task)
-    }))
+    console.log("tasks", fetchedTasks)
+    const matchingBoards = boards.filter((board) => board.taskBoard == taskboardId);
 
-    console.log(boards.map(board => {
-        console.log("test", board.task)
-        console.log("boardId", board.taskBoard)
-        if (board.taskBoard === taskboardId) {
-            console.log(board.task)
-        }
-    }))
+    let itMatches = matchingBoards.forEach((board) => {
+        fetchedTasks.filter(fetchTask => fetchTask.id === board.taskBoard).map(fetchedTask => fetchedTask.task)
+    })
+
+    console.log("Filter Boards", matchingBoards)
+
+
 
     const handleDeleteTask = id => {
         deleteTask(id)
             .then(() => getAllTasks()
-                .then(setNewTasks))
+                .then(setFetchedTasks))
     }
 
     useEffect(() => {
@@ -46,15 +49,9 @@ const TaskList = ({ tasks, taskboardId }) => {
     }, [])
 
 
-    useEffect(() => {
-        getBoardTasks().then(boardTasks => {
-            setBoards(boardTasks)
-        })
-    }, [])
-
     return (
         <div id="task-list-container">
-            {newTasks.map(task =>
+            {fetchedTasks.map(task =>
                 <TaskListCard
                     key={task.id}
                     task={task}

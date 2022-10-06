@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
-import { updateTask } from "./TaskManager";
+import { updateTask, getAllTasks } from "./TaskManager";
 import "./TaskListCard.css";
 
 const TaskListCard = ({ task, handleDeleteTask }) => {
     const [currentTask, setCurrentTask] = useState({});
+    const [tasks, setTasks] = useState([])
     const isCompleted = currentTask.isCompleted ? "done" : "not-completed"
+
+    const getTasks = () => {
+        return getAllTasks().then(tasksFromApi => {
+            setTasks(tasksFromApi)
+        })
+    }
+
+
+    useEffect(() => {
+        getTasks()
+    }, [])
 
 
     const toggleCompletion = (task) => {

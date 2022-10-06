@@ -16,40 +16,28 @@ export const TaskListPage = () => {
         timeStamp: "00:00:00"
     });
     const [taskList, setTaskList] = useState([])
-    // const [isLoading, setIsLoading] = useState(false);
 
     const { taskboardId } = useParams()
 
     const changeState = (event) => {
         const newTask = { ...task }
         let selectedVal = event.target.value
-        // if (event.target.name.includes("name")) {
-        //     selectedVal = parseInt(selectedVal)
-        // }
         newTask[event.target.name] = selectedVal
         setTask(newTask)
     }
 
     const CreateNewTask = (event) => {
         event.preventDefault()
-        console.log(task)
         addTask(task)
         // .then(() => history.pushState("/taskboardpage/:id"))
     }
 
     useEffect(() => {
-        console.log("taskboardId", taskboardId)
         getTasksById(taskboardId).then(task => {
             setTaskList(task)
-            console.log(task)
             // setIsLoading(false)
         })
     }, [])
-
-    useEffect(() => {
-        console.log(taskList)
-        console.log(`hello ${task}`, task)
-    }, [task])
 
     return (
         <div className="taskBoardPageContainer">
