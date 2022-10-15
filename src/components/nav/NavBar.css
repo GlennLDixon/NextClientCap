@@ -10,12 +10,30 @@
     flex-wrap: nowrap;
     justify-content:space-between;
     padding: 10px 25px;
-    background-color: lightcyan;
-    border-bottom: 1px solid blue;
+    background-color: black;
+    border-bottom: 1px solid black;
 }
 
 .navbar-item {
     flex-basis: 20%;
     list-style-type: none;
     justify-content: space-around;
+    padding: 0 10px;
+    color: white;
+}
+
+.navbar-menu {
+    display: flex;
+    width: 280px;
+    font-size: 1.2em;
+}
+
+.logout-button {
+    width: 60px;
+    height: 30px;
+    color: white;
+    background-color: red;
+    border: none;
+    font-size: .8em;
+    font-style: bold;
 }

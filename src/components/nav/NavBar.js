@@ -41,7 +41,7 @@ export const NavBar = ({ token, setToken }) => {
             <div className="buttons">
               {token ? (
                 <button
-                  className="button is-outlined"
+                  className="logout-button nav-btn is-outlined"
                   onClick={() => {
                     setToken("");
                     history.push("/login");
@@ -51,10 +51,10 @@ export const NavBar = ({ token, setToken }) => {
                 </button>
               ) : (
                 <>
-                  <Link to="/register" className="button is-link">
+                  <Link to="/register" className="register-button nav-btn is-link">
                     Register
                   </Link>
-                  <Link to="/login" className="button is-outlined">
+                  <Link to="/login" className="login-button nav-btn is-outlined">
                     Login
                   </Link>
                 </>

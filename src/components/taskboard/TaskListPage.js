@@ -43,25 +43,22 @@ export const TaskListPage = () => {
     }, [])
 
     return (
-        <div className="taskBoardPageContainer">
-            {/* <div className="currentTaskBoardContainer">
-                <h1>{thisTask.task}, {thisTask.dateCreated}</h1>
-            </div> */}
-            {/* <hr id="line-break" /> */}
-            <div id="bottom-half-container">
-                <div id="input-and-button-column">
-                    <div id="input-and-button-wrapper">
-                        <input type="text" name="task" className="taskform_input" onChange={changeState} value={task.task} />
-                        <div id="button-container">
-                            <button id="add-new-task-button" onClick={CreateNewTask}>Add New Task</button>
-                        </div>
+        <div className="taskboardpage-container">
+            <div id="taskboardpage-input-and-button-column">
+                <div className="taskboardpage-wrapper">
+                    <div id="taskboardpage-input">
+                        <input type="text" name="task" className="taskboardpage-task-input" onChange={changeState} value={task.task} />
+                    </div>
+                    <div id="taskboardpage-button">
+                        <button className="taskboardpage-button" onClick={CreateNewTask}>Add New Task</button>
                     </div>
                 </div>
-                <TaskList
-                    tasks={taskList}
-                    taskboardId={taskboardId}
-                />
             </div>
+
+            <TaskList
+                tasks={taskList}
+                taskboardId={taskboardId}
+            />
         </div>
     );
 };

@@ -69,36 +69,41 @@ const TaskListCard = ({ task, handleDeleteTask, taskBoardId }) => {
 
 
     return (
-        <div className="card">
-            <div className="card-content">
-                <p className={isCompleted}>{currentTask.task}</p>
-                {
-                    currentTask.isCompleted ?
-                        (
-                            <button type="button" onClick={() => toggleCompletion(task)}>Undo</button>
-                        ) :
-                        (
-                            <button type="button" onClick={() => toggleCompletion(task)}>Done</button>
-                        )
-                }
-                <Link to={`${currentTask.id}/edit`}>
-                    <button>Edit</button>
-                </Link>
-                <button type="button" onClick={() => handleDeleteTask(task.id)}>X</button>
-                <form className="playListForm">
-                    <fieldset>
-                        <div className="form-group">
-                            {/* <input name="task" onInput={handleInput} /> */}
-                            <select value={boards.id} name="taskBoard" onInput={handleInput}>
-                                <option>Select board</option>
-                                {
-                                    boards.map((board) => <option value={board.id}>{board.name}</option>
-                                    )}
-                            </select>
-                        </div>
-                    </fieldset>
-                </form>
-                <button type="button" onClick={() => handleAddTaskClicked(task.id)}>Add Task</button>
+        <div className="tasklistcard-container">
+            <div className="tasklistcard-content">
+                <div className="tasklistcard-header">
+                    <p className="tasklistcard-task">{currentTask.task}</p>
+                    <form className="tasklistcard-form">
+                        <fieldset>
+                            <div className="form-group">
+                                {/* <input name="task" onInput={handleInput} /> */}
+                                <select value={boards.id} className="tasklistcard-select" name="taskBoard" onInput={handleInput}>
+                                    <option className="tasklistcard-dropdown">Select board</option>
+                                    {
+                                        boards.map((board) => <option value={board.id}>{board.name}</option>
+                                        )}
+                                </select>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div className="tasklistcard-button-section">
+                    <button className="tasklistcard-btn share-btn" type="button" onClick={() => handleAddTaskClicked(task.id)}>Add Task</button>
+                    <Link to={`${currentTask.id}/edit`}>
+                        <button className="tasklistcard-btn">Edit</button>
+                    </Link>
+                    {
+                        currentTask.isCompleted ?
+                            (
+                                <button className="tasklistcard-btn undo-btn" type="button" onClick={() => toggleCompletion(task)}>Undo</button>
+                            ) :
+                            (
+                                <button className="tasklistcard-btn completed-btn" type="button" onClick={() => toggleCompletion(task)}>Done</button>
+                            )
+                    }
+                    <button className="tasklistcard-btn delete-btn" type="button" onClick={() => handleDeleteTask(task.id)}>X</button>
+                </div>
 
             </div>
         </div>
