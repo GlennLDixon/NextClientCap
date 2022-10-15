@@ -45,6 +45,17 @@ export const addTask = (newTask) => {
     })
 }
 
+export const createSharedTask = (taskRelation) => {
+    return fetch(`${nextApiUrl}/boardtasks`, {
+        "method": "POST",
+        "headers": {
+            "Authorization": nextToken,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(taskRelation)
+    })
+}
+
 export const deleteTask = (id) => {
     return fetch(`${nextApiUrl}/tasks/${id}`, {
         "method": "DELETE",

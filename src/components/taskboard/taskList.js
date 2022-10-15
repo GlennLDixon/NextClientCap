@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TaskListCard from "./TaskListCard";
 import "./TaskList.css";
-import { getAllTasks, deleteTask, getTasksById, updateTask, getBoardTasks } from "./TaskManager";
+import { getAllTasks, deleteTask, addTask, getBoardTasks } from "./TaskManager";
 
 const TaskList = ({ tasks, taskboardId }) => {
     const [fetchedTasks, setFetchedTasks] = useState([])
@@ -55,6 +55,7 @@ const TaskList = ({ tasks, taskboardId }) => {
                 <TaskListCard
                     key={task.id}
                     task={task}
+                    taskboardId={taskboardId}
                     handleDeleteTask={handleDeleteTask}
                 />)}
         </div>
